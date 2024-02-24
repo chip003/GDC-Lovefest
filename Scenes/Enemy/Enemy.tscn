@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://g3xo4lcoqj02"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="1_dglfo"]
+[ext_resource type="Texture2D" uid="uid://cclwqfyy4h822" path="res://icon.svg" id="2_ofru7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80snk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ofru7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dglfo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_80snk")
