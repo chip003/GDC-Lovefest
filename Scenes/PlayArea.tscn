@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="PackedScene" uid="uid://b8gir8rdihpu2" path="res://Scenes/Enemy/TestEnemyTarget.tscn" id="1_6kbef"]
-[ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/EnemySpawner/EnemySpawner.tscn" id="2_70cjn"]
+[ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_70cjn"]
 
 [node name="PlayArea" type="Node2D"]
 position = Vector2(-4, 0)
