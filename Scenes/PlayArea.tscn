@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/EnemySpawner/EnemySpawner.tscn" id="2_70cjn"]
 
 [node name="PlayArea" type="Node2D"]
+position = Vector2(-4, 0)
 
 [node name="TestTarget" parent="." instance=ExtResource("1_6kbef")]
 position = Vector2(946, 542)

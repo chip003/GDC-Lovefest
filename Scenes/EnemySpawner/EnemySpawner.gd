@@ -1,5 +1,6 @@
 extends Node
 
+
 const MAX_ENEMY = 3
 var last_spawn_time
 var spawn_delay = 5 # seconds
@@ -8,7 +9,6 @@ var move_delay = 10 # seconds
 var enemy_file_paths = []
 var enemy_instances = []
 const enemy_file_path = "res://Scenes/Enemy/Enemy.tscn"
-
 var min_x = -100
 var max_x = 100
 var min_y = -100
@@ -19,14 +19,27 @@ func _ready():
 	last_spawn_time = Time.get_ticks_msec()
 	last_move_time = Time.get_ticks_msec()
 
+
 func _process(delta):
 	var current_time = Time.get_ticks_msec()
-	if current_time - last_spawn_time > spawn_delay*1000 and len(enemy_instances) < MAX_ENEMY:
+	if time_to_spawn(current_time) and not enemy_capacity_reached():
 		spawn_enemy()
 		last_spawn_time = current_time
-	if current_time - last_move_time*1000 > move_delay:
+	if time_to_move(current_time):
 		move_spawner_to_random_position()
 		last_move_time = current_time
+	
+	
+func enemy_capacity_reached():
+	return len(enemy_instances) >= MAX_ENEMY
+	
+	
+func time_to_move(current_time):
+	return current_time - last_move_time > move_delay*1000
+	
+	
+func time_to_spawn(current_time):
+	return current_time - last_spawn_time > spawn_delay*1000
 	
 	
 func spawn_enemy():
@@ -38,6 +51,7 @@ func spawn_enemy():
 
 func move_spawner_to_random_position():
 	# Randomly choose a side: 0 = top, 1 = bottom, 2 = left, 3 = right
+	randomize()
 	var side = randi() % 4
 	var new_position = Vector2()
 	match side:
