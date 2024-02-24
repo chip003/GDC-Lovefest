@@ -1,18 +1,18 @@
-extends Node
+extends Node2D
 
 
 const MAX_ENEMY = 3
 var last_spawn_time
-var spawn_delay = 5 # seconds
+var spawn_delay = 10 # seconds
 var last_move_time
-var move_delay = 10 # seconds
+var move_delay = 3 # seconds
 var enemy_file_paths = []
 var enemy_instances = []
 const enemy_file_path = "res://Scenes/Enemy/Enemy.tscn"
-var min_x = -100
-var max_x = 100
-var min_y = -100
-var max_y = 100
+var min_x = 0
+var max_x = 1000
+var min_y = -1000
+var max_y = 0
 
 
 func _ready():
@@ -45,6 +45,7 @@ func time_to_spawn(current_time):
 func spawn_enemy():
 	var enemy_scene = preload(enemy_file_path)
 	var enemy_instance = enemy_scene.instantiate()
+	enemy_instance.global_position = global_position
 	get_tree().get_root().add_child(enemy_instance)
 	enemy_instances.append(enemy_instance)
 
@@ -56,15 +57,15 @@ func move_spawner_to_random_position():
 	var new_position = Vector2()
 	match side:
 		0: # Top
-			new_position.x = randf_range(min_x, max_x)
+			new_position.x = randi_range(min_x, max_x)
 			new_position.y = min_y
 		1: # Bottom
-			new_position.x = randf_range(min_x, max_x)
+			new_position.x = randi_range(min_x, max_x)
 			new_position.y = max_y
 		2: # Left
 			new_position.x = min_x
-			new_position.y = randf_range(min_y, max_y)
+			new_position.y = randi_range(min_y, max_y)
 		3: # Right
 			new_position.x = max_x
-			new_position.y = randf_range(min_y, max_y)
-	self.position = new_position
+			new_position.y = randi_range(min_y, max_y)
+	global_position = new_position

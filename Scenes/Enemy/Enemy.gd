@@ -2,7 +2,7 @@ extends Node2D
 
 
 var target_position = Vector2()
-var speed = 10
+var speed = 15
 
 
 func _ready():
