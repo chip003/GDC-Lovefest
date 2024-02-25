@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b56edep2iywhf"]
+
+[ext_resource type="Texture2D" uid="uid://bto24crht13wy" path="res://Sprites/pot.png" id="1_tufn6"]
+[ext_resource type="Texture2D" uid="uid://cnnogxjdrmv16" path="res://Sprites/shadow.png" id="2_xrajs"]
+
+[node name="Pot" type="Node2D"]
+z_index = 2
+
+[node name="Pot" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_tufn6")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -1
+position = Vector2(0, 33.61)
+scale = Vector2(0.355, 0.22)
+texture = ExtResource("2_xrajs")

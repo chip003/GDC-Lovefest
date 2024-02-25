@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs13v1srleb4s"]
+
+[ext_resource type="Texture2D" uid="uid://0icndhpbrdcw" path="res://Sprites/tree.png" id="1_ot0gr"]
+[ext_resource type="Script" path="res://Scenes/Tree.gd" id="2_pd2bf"]
+[ext_resource type="Texture2D" uid="uid://cnnogxjdrmv16" path="res://Sprites/shadow.png" id="3_ne8k0"]
+
+[node name="Tree" type="Sprite2D"]
+texture = ExtResource("1_ot0gr")
+offset = Vector2(6.625, -104.205)
+script = ExtResource("2_pd2bf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -1
+texture_filter = 2
+scale = Vector2(1.62, 0.735)
+texture = ExtResource("3_ne8k0")

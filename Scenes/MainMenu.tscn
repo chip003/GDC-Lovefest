@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dngjalu4j5n3t"]
+[gd_scene load_steps=2 format=3 uid="uid://dngjalu4j5n3t"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_36m2r"]
-[ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_gbc8i"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_36m2r")
@@ -24,8 +23,5 @@ layout_mode = 2
 layout_mode = 2
 text = "PLAY
 "
-
-[node name="EnemySpawner" parent="." instance=ExtResource("2_gbc8i")]
-position = Vector2(57, 32)
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

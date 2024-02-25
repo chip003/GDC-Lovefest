@@ -1,23 +1,31 @@
 extends Node2D
 
-
-const MAX_ENEMY = 3
+const MAX_ENEMY = 300
 var last_spawn_time
+
 var spawn_delay = 10 # seconds
+
 var last_move_time
 var move_delay = 3 # seconds
 var enemy_file_paths = []
 var enemy_instances = []
 const enemy_file_path = "res://Scenes/Enemy/Enemy.tscn"
+
 var min_x = 0
 var max_x = 1000
 var min_y = -1000
 var max_y = 0
 
 
+
 func _ready():
 	last_spawn_time = Time.get_ticks_msec()
 	last_move_time = Time.get_ticks_msec()
+	
+	min_x = get_parent().limitMin.x
+	max_x = get_parent().limitMax.x
+	min_y = get_parent().limitMin.y
+	max_y = get_parent().limitMax.y
 
 
 func _process(delta):
@@ -26,7 +34,7 @@ func _process(delta):
 		spawn_enemy()
 		last_spawn_time = current_time
 	if time_to_move(current_time):
-		move_spawner_to_random_position()
+		#move_spawner_to_random_position()
 		last_move_time = current_time
 	
 	
@@ -43,14 +51,14 @@ func time_to_spawn(current_time):
 	
 	
 func spawn_enemy():
-	var enemy_scene = preload(enemy_file_path)
-	var enemy_instance = enemy_scene.instantiate()
-	enemy_instance.global_position = global_position
-	get_tree().get_root().add_child(enemy_instance)
-	enemy_instances.append(enemy_instance)
+	var enemy_scene = preload(enemy_file_path).instantiate()
+	enemy_scene .position = get_random_position()
+	get_parent().add_child(enemy_scene)
+	enemy_instances.append(enemy_scene)
+	print("spawned enemy")
 
 
-func move_spawner_to_random_position():
+func get_random_position():
 	# Randomly choose a side: 0 = top, 1 = bottom, 2 = left, 3 = right
 	randomize()
 	var side = randi() % 4
@@ -67,5 +75,6 @@ func move_spawner_to_random_position():
 			new_position.y = randi_range(min_y, max_y)
 		3: # Right
 			new_position.x = max_x
-			new_position.y = randi_range(min_y, max_y)
-	global_position = new_position
+			new_position.y = randf_range(min_y, max_y)
+			
+	return new_position
