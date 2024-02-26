@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_70cjn"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_djsil"]
 [ext_resource type="Texture2D" uid="uid://b3umymuuatjll" path="res://Sprites/tileset.png" id="4_qo22i"]
-[ext_resource type="PackedScene" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
+[ext_resource type="PackedScene" uid="uid://bsur1ctde5mxm" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
 [ext_resource type="Texture2D" uid="uid://bn4mwnvm25bw0" path="res://Sprites/bench.png" id="5_ye7yr"]
 [ext_resource type="PackedScene" uid="uid://b56edep2iywhf" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
 [ext_resource type="Script" path="res://Scenes/Sprite2D.gd" id="10_rqcyb"]

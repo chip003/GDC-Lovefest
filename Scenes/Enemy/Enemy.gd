@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 var target_position = Vector2()
+var last_target_position_update
+var target_position_update_delay = 1 # seconds
 var damage = 1
 var speed = 50
 var nursery
@@ -8,8 +10,9 @@ var nursery
 func _ready():
 	var nodes = get_tree().get_nodes_in_group("PlayArea")
 	if nodes:
-		print('successfully found playarea')
+		print('Enemy: successfully found Nursery')
 		nursery = nodes[0]
+	last_target_position_update = 0
 
 
 func _process(delta):
@@ -18,11 +21,14 @@ func _process(delta):
 	move_towards_target(delta)
 		
 func update_target_position():
-	var targets = get_tree().get_nodes_in_group("EnemyTarget")
-	target_position = targets[0].global_position
-	for t in targets:
-		if global_position.distance_to(t.global_position) < global_position.distance_to(target_position):
-			target_position = t.global_position
+	var curr_time = Time.get_ticks_msec()
+	if curr_time - last_target_position_update > target_position_update_delay*1000:
+		var targets = get_tree().get_nodes_in_group("EnemyTarget")
+		target_position = targets[0].global_position
+		for t in targets:
+			if global_position.distance_to(t.global_position) < global_position.distance_to(target_position):
+				target_position = t.global_position
+		last_target_position_update = curr_time
 		
 		
 func move_towards_target(delta):
@@ -65,9 +71,8 @@ func move_towards_target(delta):
 			pass
 		else:
 			nursery.nursery_hp -= 1 * delta
-			print("damaged nursery")
-			print(nursery.nursery_hp)
-			pass
+			#print("damaged nursery")
+			#print(nursery.nursery_hp)
 	else:
 		position += direction * speed * delta
 		

@@ -55,7 +55,7 @@ func spawn_enemy():
 	enemy_scene .position = get_random_position()
 	get_parent().add_child(enemy_scene)
 	enemy_instances.append(enemy_scene)
-	print("spawned enemy")
+	print("EnemySpawner: spawned enemy")
 
 
 func get_random_position():
