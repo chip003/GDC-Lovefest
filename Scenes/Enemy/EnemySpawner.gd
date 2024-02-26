@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const MAX_ENEMY = 300
 var last_spawn_time
