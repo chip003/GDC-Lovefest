@@ -1,22 +1,28 @@
 extends CharacterBody2D
 
 var target_position = Vector2()
-
+var damage = 1
 var speed = 50
+var nursery
 
 func _ready():
-	pass
+	var nodes = get_tree().get_nodes_in_group("PlayArea")
+	if nodes:
+		print('successfully found playarea')
+		nursery = nodes[0]
 
 
 func _process(delta):
 	update_target_position()
+	move_and_slide()
 	move_towards_target(delta)
 		
-		
 func update_target_position():
-	var targets = get_tree().get_nodes_in_group("TestTarget")
-	if targets.size() > 0:
-		target_position = targets[0].position
+	var targets = get_tree().get_nodes_in_group("EnemyTarget")
+	target_position = targets[0].global_position
+	for t in targets:
+		if global_position.distance_to(t.global_position) < global_position.distance_to(target_position):
+			target_position = t.global_position
 		
 		
 func move_towards_target(delta):
@@ -29,7 +35,7 @@ func move_towards_target(delta):
 		0: #right
 			$AnimatedSprite2D.play("side")
 			$AnimatedSprite2D.flip_h = false
-			print("ayoooo")
+			#print("ayoooo")
 		1: #bottomright
 			$AnimatedSprite2D.play("bottomangle")
 			$AnimatedSprite2D.flip_h = false
@@ -52,4 +58,26 @@ func move_towards_target(delta):
 			$AnimatedSprite2D.play("topangle")
 			$AnimatedSprite2D.flip_h = false
 	
-	position += direction * speed * delta
+	if in_collision():
+		velocity = direction
+		if in_collision_with_plant():
+			# damage plant
+			pass
+		else:
+			nursery.nursery_hp -= 1 * delta
+			print("damaged nursery")
+			print(nursery.nursery_hp)
+			pass
+	else:
+		position += direction * speed * delta
+		
+		
+func in_collision():
+	return get_slide_collision_count() > 0
+	
+func in_collision_with_plant():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		#if collision.get_collider().name == "Plant?":
+			#return true
+	return false

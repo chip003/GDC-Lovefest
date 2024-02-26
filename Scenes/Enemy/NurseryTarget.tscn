@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8gir8rdihpu2"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy/TestEnemyTarget.gd" id="1_er2xf"]
+[ext_resource type="Script" path="res://Scenes/Enemy/NurseryTarget.gd" id="1_er2xf"]
 [ext_resource type="Texture2D" uid="uid://cclwqfyy4h822" path="res://icon.svg" id="1_gjbwc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8kod8"]
