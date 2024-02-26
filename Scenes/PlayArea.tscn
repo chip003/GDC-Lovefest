@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://du8q8em1w5nit"]
+[gd_scene load_steps=14 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
 [ext_resource type="PackedScene" uid="uid://b8gir8rdihpu2" path="res://Scenes/Enemy/TestEnemyTarget.tscn" id="1_6kbef"]
@@ -6,33 +6,81 @@
 [ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_70cjn"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_djsil"]
 [ext_resource type="Texture2D" uid="uid://b3umymuuatjll" path="res://Sprites/tileset.png" id="4_qo22i"]
+[ext_resource type="PackedScene" uid="uid://bsur1ctde5mxm" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
 [ext_resource type="Texture2D" uid="uid://bn4mwnvm25bw0" path="res://Sprites/bench.png" id="5_ye7yr"]
-[ext_resource type="PackedScene" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
+[ext_resource type="PackedScene" uid="uid://b56edep2iywhf" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
+[ext_resource type="Script" path="res://Scenes/Sprite2D.gd" id="10_rqcyb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2duw"]
 texture = ExtResource("4_qo22i")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.71751, -24, 7.07107, 24, -7.42462, 24, -7.42462, -24)
 3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(24, 10.6066, -24, 10.6066, -24, 24, 24, 24)
 1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
 1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(9.89949, -24, 24, -24, 24, 24, 10.253, 24)
 3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9.54594, -24, -9.8995, 24, -24, 24, -24, -24)
 3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
 2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(24, -24, 24, -10.253, -24, -10.2531, -24, -24)
 1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
 4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9.54594, -24, -9.8995, 24, -24, 24, -24, -24)
 5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(9.89949, -24, 24, -24, 24, 24, 10.253, 24)
 0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
 0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
 0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_0at08"]
 tile_size = Vector2i(48, 48)
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_s2duw")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fky1x"]
+radius = 2.0
 
 [node name="PlayArea" type="Node2D"]
 y_sort_enabled = true
@@ -106,9 +154,21 @@ layout_mode = 2
 text = "Seeds"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SeedButton" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("5_aevuh")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
 
 [node name="Tools" type="MarginContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -158,29 +218,48 @@ texture = ExtResource("5_ye7yr")
 position = Vector2(0, 128)
 texture = ExtResource("5_ye7yr")
 
-[node name="Pot" parent="." instance=ExtResource("8_mi2f7")]
-position = Vector2(4, -171.415)
+[node name="Pot1" parent="." instance=ExtResource("8_mi2f7")]
+position = Vector2(-108, -171.415)
 
 [node name="Pot2" parent="." instance=ExtResource("8_mi2f7")]
-position = Vector2(-108, -171.415)
+position = Vector2(4, -171.415)
 
 [node name="Pot3" parent="." instance=ExtResource("8_mi2f7")]
 position = Vector2(110, -171.415)
 
 [node name="Pot4" parent="." instance=ExtResource("8_mi2f7")]
-position = Vector2(4, -42.055)
+position = Vector2(-108, -42.055)
 
 [node name="Pot5" parent="." instance=ExtResource("8_mi2f7")]
-position = Vector2(-108, -42.055)
+position = Vector2(4, -42.055)
 
 [node name="Pot6" parent="." instance=ExtResource("8_mi2f7")]
 position = Vector2(110, -42.055)
 
 [node name="Pot7" parent="." instance=ExtResource("8_mi2f7")]
-position = Vector2(4, 86.025)
+position = Vector2(-108, 86.025)
 
 [node name="Pot8" parent="." instance=ExtResource("8_mi2f7")]
-position = Vector2(-108, 86.025)
+position = Vector2(4, 86.025)
 
 [node name="Pot9" parent="." instance=ExtResource("8_mi2f7")]
 position = Vector2(110, 86.025)
+
+[node name="Cursor" type="TextureRect" parent="."]
+z_index = 1000
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_rqcyb")
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+shape = SubResource("CircleShape2D_fky1x")
