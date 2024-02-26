@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsur1ctde5mxm"]
+
+[ext_resource type="Script" path="res://Scenes/seedButton.gd" id="1_8c2x6"]
+[ext_resource type="Texture2D" uid="uid://cr2x6uk5puvui" path="res://Sprites/seed_rose.png" id="1_fw7v4"]
+
+[node name="SeedButton" type="Button"]
+custom_minimum_size = Vector2(74, 32)
+text = "Rose"
+icon = ExtResource("1_fw7v4")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("1_8c2x6")
+desc = "A basic plant"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

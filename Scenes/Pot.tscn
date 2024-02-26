@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b56edep2iywhf"]
+[gd_scene load_steps=5 format=3 uid="uid://b56edep2iywhf"]
 
 [ext_resource type="Texture2D" uid="uid://bto24crht13wy" path="res://Sprites/pot.png" id="1_tufn6"]
+[ext_resource type="Script" path="res://Scenes/Pot.gd" id="1_vlgd7"]
 [ext_resource type="Texture2D" uid="uid://cnnogxjdrmv16" path="res://Sprites/shadow.png" id="2_xrajs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdobe"]
+radius = 48.0
 
 [node name="Pot" type="Node2D"]
 z_index = 2
+script = ExtResource("1_vlgd7")
 
 [node name="Pot" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
@@ -16,3 +21,11 @@ z_index = -1
 position = Vector2(0, 33.61)
 scale = Vector2(0.355, 0.22)
 texture = ExtResource("2_xrajs")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xdobe")

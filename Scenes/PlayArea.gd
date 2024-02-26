@@ -6,6 +6,15 @@ var limitMax = Vector2i(1024,1024)
 var money = 0
 
 
+func select_seed(data):
+	$Cursor.toggle_select(data)
+
+
+func _process(delta):
+	if Input.is_action_just_pressed("rightclick"):
+		select_seed(null)
+
+
 func _ready():
 	spawn_horizontal(Vector2(limitMin.x,limitMax.x),limitMin.y)
 	spawn_horizontal(Vector2(limitMin.x,limitMax.x),limitMax.y)
