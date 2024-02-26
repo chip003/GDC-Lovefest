@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
-[ext_resource type="PackedScene" uid="uid://b8gir8rdihpu2" path="res://Scenes/Enemy/TestEnemyTarget.tscn" id="1_6kbef"]
+[ext_resource type="PackedScene" uid="uid://b8gir8rdihpu2" path="res://Scenes/Enemy/NurseryTarget.tscn" id="1_6kbef"]
 [ext_resource type="Script" path="res://Scenes/PlayArea.gd" id="1_uubf7"]
 [ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_70cjn"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_djsil"]
 [ext_resource type="Texture2D" uid="uid://b3umymuuatjll" path="res://Sprites/tileset.png" id="4_qo22i"]
-[ext_resource type="PackedScene" uid="uid://bsur1ctde5mxm" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
+[ext_resource type="PackedScene" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
 [ext_resource type="Texture2D" uid="uid://bn4mwnvm25bw0" path="res://Sprites/bench.png" id="5_ye7yr"]
 [ext_resource type="PackedScene" uid="uid://b56edep2iywhf" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
 [ext_resource type="Script" path="res://Scenes/Sprite2D.gd" id="10_rqcyb"]
@@ -87,7 +87,7 @@ y_sort_enabled = true
 position = Vector2(-4, 0)
 script = ExtResource("1_uubf7")
 
-[node name="TestTarget" parent="." instance=ExtResource("1_6kbef")]
+[node name="NurseryTarget" parent="." instance=ExtResource("1_6kbef")]
 position = Vector2(0, 0)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_70cjn")]

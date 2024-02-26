@@ -4,7 +4,7 @@ var limitMin = Vector2i(-1024,-1024)
 var limitMax = Vector2i(1024,1024)
 
 var money = 0
-
+var nursery_hp = 1000
 
 func select_seed(data):
 	$Cursor.toggle_select(data)
@@ -21,7 +21,8 @@ func _ready():
 	
 	spawn_vertical(Vector2(limitMin.y,limitMax.y),limitMin.x)
 	spawn_vertical(Vector2(limitMin.y,limitMax.y),limitMax.x)
-		
+	
+	add_to_group("PlayArea")
 		
 func spawn_horizontal(xrange, ylevel):
 	for i in range(50):
