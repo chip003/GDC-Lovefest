@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b56edep2iywhf"]
+[gd_scene load_steps=6 format=3 uid="uid://b56edep2iywhf"]
 
 [ext_resource type="Texture2D" uid="uid://bto24crht13wy" path="res://Sprites/pot.png" id="1_tufn6"]
 [ext_resource type="Script" path="res://Scenes/Pot.gd" id="1_vlgd7"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdobe"]
 radius = 48.0
+
+[sub_resource type="Gradient" id="Gradient_pliww"]
+colors = PackedColorArray(0, 0.635294, 1, 1, 0, 0.501961, 1, 0)
 
 [node name="Pot" type="Node2D"]
 z_index = 2
@@ -29,3 +32,15 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xdobe")
+
+[node name="Water" type="CPUParticles2D" parent="."]
+amount = 2
+emission_shape = 1
+emission_sphere_radius = 24.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 300)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_pliww")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3uism5hfybuy"]
+
+[ext_resource type="Script" path="res://Scenes/Plants/plant.gd" id="1_h5asr"]
+[ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="2_j2lbg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kc0h0"]
+radius = 24.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tdgg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j2lbg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1jdh"]
+bg_color = Color(1, 0.341176, 0.305882, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Rose" type="StaticBody2D"]
+z_index = 1
+script = ExtResource("1_h5asr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kc0h0")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6tdgg")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(48, 12)
+offset_left = -24.0
+offset_top = -52.0
+offset_right = 24.0
+offset_bottom = -40.0
+pivot_offset = Vector2(24, 0)
+theme_override_styles/fill = SubResource("StyleBoxFlat_d1jdh")
+value = 50.0
+show_percentage = false

@@ -3,16 +3,15 @@ extends Node2D
 var limitMin = Vector2i(-1024,-1024)
 var limitMax = Vector2i(1024,1024)
 
-var money = 0
+var money = 40
 var nursery_hp = 1000
-
-func select_seed(data):
-	$Cursor.toggle_select(data)
-
+var time = 0.0
 
 func _process(delta):
-	if Input.is_action_just_pressed("rightclick"):
-		select_seed(null)
+	time += 1*delta
+	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Gold/Label.text = str(money)
+	var seconds = "%02d" % floor(fmod(time,60))
+	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day/Label.text = str(floor(time/60)) + ":" + seconds
 
 
 func _ready():
@@ -23,7 +22,8 @@ func _ready():
 	spawn_vertical(Vector2(limitMin.y,limitMax.y),limitMax.x)
 	
 	add_to_group("PlayArea")
-		
+
+
 func spawn_horizontal(xrange, ylevel):
 	for i in range(50):
 		var tree = preload("res://Scenes/tree.tscn").instantiate()

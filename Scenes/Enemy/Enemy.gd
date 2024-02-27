@@ -1,5 +1,6 @@
-extends CharacterBody2D
+class_name Enemy extends CharacterBody2D
 
+var has_collided = false
 var target_position = Vector2()
 var last_target_position_update
 var target_position_update_delay = 1 # seconds
@@ -81,9 +82,10 @@ func move_towards_target(delta):
 func in_collision():
 	return get_slide_collision_count() > 0
 	
+	
 func in_collision_with_plant():
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		#if collision.get_collider().name == "Plant?":
-			#return true
-	return false
+		var collider = get_slide_collision(i).get_collider()
+		if collider.is_in_group("Plant"):
+			return collider.get_collider()
+	return null

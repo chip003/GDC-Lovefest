@@ -1,12 +1,4 @@
-extends CharacterBody2D
-
-var has_collided = false
-var target_position = Vector2()
-var last_target_position_update
-var target_position_update_delay = 1 # seconds
-var damage = 1
-var speed = 75
-var nursery
+extends Enemy
 
 var min_x = 0
 var max_x = 1000
@@ -17,18 +9,12 @@ var last_stop_moving_time = 0
 var pause_delay = 5 # seconds
 
 func _ready():
-	var nodes = get_tree().get_nodes_in_group("PlayArea")
-	if nodes:
-		print('Enemy: successfully found Nursery')
-		nursery = nodes[0]
-	last_target_position_update = 0
+	super._ready()
 	last_stop_moving_time = 0
 
 
 func _process(delta):
-	update_target_position()
-	move_and_slide()
-	move_towards_target(delta)
+	super._process(delta)
 	velocity *= 0.7 * delta
 
 		
@@ -97,12 +83,6 @@ func move_towards_target(delta):
 		#position += direction * speed * delta
 		#last_stop_moving_time = Time.get_ticks_msec(
 	
-func in_collision_with_plant():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		#if collision.get_collider().name == "Plant?":
-			#return true
-	return false
 	
 func get_random_position():
 	randomize()

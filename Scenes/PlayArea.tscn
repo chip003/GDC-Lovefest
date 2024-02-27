@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du8q8em1w5nit"]
+[gd_scene load_steps=15 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
 [ext_resource type="Script" path="res://Scenes/PlayArea.gd" id="1_uubf7"]
@@ -6,9 +6,10 @@
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_djsil"]
 [ext_resource type="Texture2D" uid="uid://b3umymuuatjll" path="res://Sprites/tileset.png" id="4_qo22i"]
 [ext_resource type="PackedScene" uid="uid://bsur1ctde5mxm" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
+[ext_resource type="Texture2D" uid="uid://cr2x6uk5puvui" path="res://Sprites/seed_rose.png" id="5_kjbpe"]
 [ext_resource type="Texture2D" uid="uid://bn4mwnvm25bw0" path="res://Sprites/bench.png" id="5_ye7yr"]
 [ext_resource type="PackedScene" uid="uid://b56edep2iywhf" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
-[ext_resource type="Script" path="res://Scenes/Sprite2D.gd" id="10_rqcyb"]
+[ext_resource type="Script" path="res://Scenes/Cursor.gd" id="10_rqcyb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2duw"]
 texture = ExtResource("4_qo22i")
@@ -78,6 +79,9 @@ tile_size = Vector2i(48, 48)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_s2duw")
 
+[sub_resource type="Gradient" id="Gradient_hncg0"]
+colors = PackedColorArray(0, 0.580392, 1, 1, 0, 0.631373, 1, 0)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fky1x"]
 radius = 2.0
 
@@ -117,7 +121,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "DAY 1"
 
 [node name="Gold" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -183,9 +186,20 @@ layout_mode = 2
 text = "Tools"
 horizontal_alignment = 1
 
-[node name="List" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer"]
+[node name="List" type="GridContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="SeedButton" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer/List" instance=ExtResource("5_aevuh")]
+layout_mode = 2
+text = "Watering Can"
+desc = "Water your plants to help them grow!"
+data = {
+"Cost": 2,
+"Name": "Watering Can",
+"Sprite": ExtResource("5_kjbpe"),
+"Type": "Watering Can"
+}
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_djsil")
@@ -251,6 +265,22 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_rqcyb")
+
+[node name="Water" type="CPUParticles2D" parent="Cursor"]
+z_index = 100
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.5
+emission_shape = 1
+emission_sphere_radius = 24.0
+direction = Vector2(0, -1)
+spread = 90.0
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_hncg0")
 
 [node name="Area2D" type="Area2D" parent="Cursor"]
 collision_layer = 0
