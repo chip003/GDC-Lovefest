@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://du8q8em1w5nit"]
+[gd_scene load_steps=13 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
-[ext_resource type="PackedScene" uid="uid://b8gir8rdihpu2" path="res://Scenes/Enemy/NurseryTarget.tscn" id="1_6kbef"]
 [ext_resource type="Script" path="res://Scenes/PlayArea.gd" id="1_uubf7"]
 [ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_70cjn"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_djsil"]
@@ -86,9 +85,6 @@ radius = 2.0
 y_sort_enabled = true
 position = Vector2(-4, 0)
 script = ExtResource("1_uubf7")
-
-[node name="NurseryTarget" parent="." instance=ExtResource("1_6kbef")]
-position = Vector2(0, 0)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_70cjn")]
 
