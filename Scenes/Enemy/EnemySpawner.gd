@@ -12,7 +12,7 @@ var enemy_instances = []
 const enemy_worm = "res://Scenes/Enemy/EnemyWorm.tscn"
 const enemy_rabbit = "res://Scenes/Enemy/EnemyRabbit.tscn"
 
-var percent_rabbits = 20 # %
+var percent_rabbits = 25 # %
 
 var min_x = 0
 var max_x = 1000

@@ -26,11 +26,11 @@ func _ready():
 
 
 func _process(delta):
-	has_collided = false
 	update_target_position()
 	move_and_slide()
 	move_towards_target(delta)
-	has_collided = in_collision()
+	velocity *= 0.7 * delta
+
 		
 func update_target_position():
 	var curr_time = Time.get_ticks_msec()
@@ -49,7 +49,6 @@ func update_target_position():
 		
 func move_towards_target(delta):
 	var direction = (target_position - position).normalized()
-	
 	var dir = roundi(rad_to_deg(global_position.angle_to_point(target_position))/45)
 		
 	#setting animations depending on direction, can be used for other stuff
@@ -80,18 +79,23 @@ func move_towards_target(delta):
 			$AnimatedSprite2D.play("topangle")
 			$AnimatedSprite2D.flip_h = false
 	
-	if has_collided:
-		target_position = get_random_position()
+	if move_and_collide(direction * speed * delta):
+		has_collided = true
+		target_position = get_random_position() # Immediately seek a new target upon collision
 	elif global_position.distance_to(target_position) < 5:
 		velocity = Vector2(0, 0)
 	else:
-		#print("moving")
 		position += direction * speed * delta
 		last_stop_moving_time = Time.get_ticks_msec()
-		
-		
-func in_collision():
-	return get_slide_collision_count() > 0
+		has_collided = false
+	
+	#if has_collided:
+		#target_position = get_random_position()
+	#elif global_position.distance_to(target_position) < 5:
+		#velocity = Vector2(0, 0)
+	#else:
+		#position += direction * speed * delta
+		#last_stop_moving_time = Time.get_ticks_msec(
 	
 func in_collision_with_plant():
 	for i in get_slide_collision_count():
