@@ -300,6 +300,43 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mqlqb")
 value = 50.0
 show_percentage = false
 
+[node name="Lose" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Lose"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.294118)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Lose"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lose/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Lose/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Your Nursery has Been Destroyed!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lose/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Lose/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Lose/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_djsil")
 
@@ -408,4 +445,6 @@ volume_db = -15.0
 autoplay = true
 script = ExtResource("16_2tg54")
 
+[connection signal="pressed" from="CanvasLayer/Lose/CenterContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lose/CenterContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
