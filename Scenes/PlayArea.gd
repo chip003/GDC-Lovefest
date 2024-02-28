@@ -11,7 +11,9 @@ func _process(delta):
 	time += 1*delta
 	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Gold/Label.text = str(money)
 	var seconds = "%02d" % floor(fmod(time,60))
-	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day/Label.text = str(floor(time/60)) + ":" + seconds
+	if nursery_hp > 0:
+		$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day/Label.text = str(floor(time/60)) + ":" + seconds
+	
 	$CanvasLayer/Top/Label.text = str(floor(nursery_hp))
 	$CanvasLayer/Top/ProgressBar.value = nursery_hp
 	
