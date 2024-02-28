@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://du8q8em1w5nit"]
+[gd_scene load_steps=28 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
 [ext_resource type="Script" path="res://Scenes/PlayArea.gd" id="1_uubf7"]
@@ -9,9 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://bsur1ctde5mxm" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
 [ext_resource type="Texture2D" uid="uid://cpkfw171yetuv" path="res://Sprites/wateringcan.png" id="5_u2gma"]
 [ext_resource type="Texture2D" uid="uid://bn4mwnvm25bw0" path="res://Sprites/bench.png" id="5_ye7yr"]
+[ext_resource type="Texture2D" uid="uid://bmkc56mg1cl6u" path="res://Sprites/sunflower_seed.png" id="6_5hvvj"]
 [ext_resource type="Texture2D" uid="uid://b32tvx15b7s4g" path="res://Sprites/heart.png" id="6_oextu"]
+[ext_resource type="PackedScene" uid="uid://d3xnh0pu302e5" path="res://Scenes/Plants/sunflower.tscn" id="7_dx6kj"]
 [ext_resource type="PackedScene" uid="uid://b56edep2iywhf" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
 [ext_resource type="Script" path="res://Scenes/Cursor.gd" id="10_rqcyb"]
+[ext_resource type="AudioStream" uid="uid://bmtb5fs22vwc5" path="res://Sounds/dirtnew.wav" id="13_05k6f"]
+[ext_resource type="AudioStream" uid="uid://pamgf4ak2kkn" path="res://Music/normal_song.wav" id="13_lxwmj"]
+[ext_resource type="AudioStream" uid="uid://chdcmhtd1m1ok" path="res://Sounds/wateringcan.wav" id="14_m2y8m"]
+[ext_resource type="Script" path="res://Scenes/AudioStreamPlayer.gd" id="16_2tg54"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gr88j"]
 bg_color = Color(0, 0.270588, 0.160784, 0.588235)
@@ -201,10 +207,24 @@ theme_override_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+columns = 2
 
 [node name="SeedButton" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("5_aevuh")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
+
+[node name="Sunflower" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("5_aevuh")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Sunflower"
+desc = "Generates money while planted outside the nursery."
+data = {
+"Cost": 15,
+"Name": "Rose",
+"Scene": ExtResource("7_dx6kj"),
+"Sprite": ExtResource("6_5hvvj"),
+"Type": "Seed"
+}
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -375,3 +395,17 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/CollisionCheck"]
 shape = SubResource("CircleShape2D_napiw")
+
+[node name="Plant" type="AudioStreamPlayer" parent="Cursor"]
+stream = ExtResource("13_05k6f")
+
+[node name="WaterSound" type="AudioStreamPlayer" parent="Cursor"]
+stream = ExtResource("14_m2y8m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_lxwmj")
+volume_db = -15.0
+autoplay = true
+script = ExtResource("16_2tg54")
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

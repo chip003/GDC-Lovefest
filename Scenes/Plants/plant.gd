@@ -16,6 +16,7 @@ var dryTime = 10.0
 @export var projectileSpeed = 600.0
 @export var projectileDamage = 1.0
 @export var attackRange = 384
+@export var canAttack = true
 
 var followTarget = null
 var placed = false
@@ -50,28 +51,36 @@ func _process(delta):
 		waterLevel -= (1/dryTime)*delta
 		
 	if placed: #code to be ran when plant is adult
-		var enemies = get_tree().get_nodes_in_group("Enemy")
-		var dist = INF
-		var target = null
-		
-		for i in enemies:
-			if global_position.distance_to(i.global_position) < dist:
-				dist = global_position.distance_to(i.global_position)
-				target = i
-				
-		if target:
-			if dist < attackRange:
-				if attackCooldown <= 0:
-					print("shotthorn")
-					var thorn = preload("res://Scenes/Plants/thorn.tscn").instantiate()
-					thorn.global_position = global_position
-					thorn.direction = global_position.direction_to(target.global_position)
-					thorn.speed = projectileSpeed
-					thorn.damage = projectileDamage
-					get_parent().add_child(thorn)
-					attackCooldown = attackTime
-				else:
-					attackCooldown -= 1*delta
+		if canAttack:
+			var enemies = get_tree().get_nodes_in_group("Enemy")
+			var dist = INF
+			var target = null
+			
+			for i in enemies:
+				if global_position.distance_to(i.global_position) < dist:
+					dist = global_position.distance_to(i.global_position)
+					target = i
+					
+			if target:
+				if dist < attackRange:
+					if attackCooldown <= 0:
+						$Shoot.pitch_scale = randf_range(0.75,1.25)
+						$Shoot.play()
+						var thorn = preload("res://Scenes/Plants/thorn.tscn").instantiate()
+						thorn.global_position = global_position
+						thorn.direction = global_position.direction_to(target.global_position)
+						thorn.speed = projectileSpeed
+						thorn.damage = projectileDamage
+						get_parent().add_child(thorn)
+						attackCooldown = attackTime
+					else:
+						attackCooldown -= 1*delta
+		else:
+			if attackCooldown <= 0:
+				get_node("/root/PlayArea").money += 1
+				attackCooldown = attackTime
+			else:
+				attackCooldown -= 1*delta
 				
 	if currentHP <= 0:
 		queue_free()

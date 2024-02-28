@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://d233wdlnssnsg"]
+[gd_scene load_steps=50 format=3 uid="uid://d233wdlnssnsg"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="1_c4cyj"]
 [ext_resource type="Texture2D" uid="uid://jblc5nbjnse7" path="res://Sprites/aphid_bottomright.png" id="2_nr7yq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://lpqbwl1fh1i3" path="res://Sprites/aphid_right.png" id="4_062m6"]
 [ext_resource type="Texture2D" uid="uid://bfvtilro4yhfa" path="res://Sprites/aphid_topright.png" id="5_w5qx8"]
 [ext_resource type="Texture2D" uid="uid://p2i5tc35vgtt" path="res://Sprites/aphid_up.png" id="6_qat7a"]
+[ext_resource type="AudioStream" uid="uid://cmk282ugrtxnw" path="res://Sounds/enemyhit.wav" id="7_qyfl3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8y6ht"]
 atlas = ExtResource("2_nr7yq")
@@ -316,12 +317,12 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xk6s"]
-radius = 24.0
+radius = 12.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource("1_c4cyj")
-speed = 150
+speed = 100
 hp = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -332,3 +333,6 @@ frame_progress = 0.127567
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7xk6s")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qyfl3")

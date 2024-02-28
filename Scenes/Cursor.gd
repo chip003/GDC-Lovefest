@@ -21,6 +21,7 @@ func _process(delta):
 				currentPot.currentPlant.placed = true
 				currentPot.currentPlant = null
 				currentPot = null
+				$Plant.play()
 				
 	
 		if Input.is_action_just_pressed("rightclick"):
@@ -44,12 +45,15 @@ func _process(delta):
 							plant.global_position = pot.global_position
 							get_parent().add_child(plant)
 							get_node("/root/PlayArea").money -= data.Cost
+							$Plant.play()
 					else: #plant does exist
 						if data.Type == "Watering Can": #watering a plant
-							pot.currentPlant.waterLevel = 1.0
-							$Water.restart()
-							$Water.emitting = true
-							get_node("/root/PlayArea").money -= data.Cost
+							if pot.currentPlant.waterLevel <= 0 && pot.currentPlant.growth < 1: 
+								pot.currentPlant.waterLevel = 1.0
+								$Water.restart()
+								$Water.emitting = true
+								get_node("/root/PlayArea").money -= data.Cost
+								$WaterSound.play()
 							
 				else:
 					if pot.currentPlant: #pickup a plant
