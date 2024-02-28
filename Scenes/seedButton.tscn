@@ -8,8 +8,6 @@ custom_minimum_size = Vector2(74, 32)
 text = "Rose"
 icon = ExtResource("1_fw7v4")
 alignment = 0
-icon_alignment = 2
-expand_icon = true
 script = ExtResource("1_8c2x6")
 desc = "A basic plant"
 
