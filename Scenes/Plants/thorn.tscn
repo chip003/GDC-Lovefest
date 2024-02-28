@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2v68qpi5v7wo"]
+
+[ext_resource type="Script" path="res://Scenes/Plants/thorn.gd" id="1_g8cp8"]
+[ext_resource type="Texture2D" uid="uid://dfs6mt8u7hnc5" path="res://Sprites/thorn.png" id="2_nfr56"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cu51b"]
+radius = 12.0
+
+[node name="Thorn" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_g8cp8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("2_nfr56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cu51b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

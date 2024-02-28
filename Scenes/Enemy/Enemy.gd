@@ -9,6 +9,8 @@ var current_target_search_time = 0.0
 
 @export var damage = 1
 @export var speed = 50
+@export var hp = 4.0
+@onready var currentHP = hp
 
 @export var targetPlants = false
 
@@ -78,12 +80,12 @@ func move_towards_target(delta):
 			$AnimatedSprite2D.play("topangle")
 			$AnimatedSprite2D.flip_h = false
 	
-	var collision = move_and_collide(direction*speed, true)
+	var collision = move_and_collide(direction, true)
 	
 	if collision: #colliding with object
 		velocity = Vector2(0,0)
 		
-		if collision.get_collider().is_in_group("Plant"): #damage plant
+		if collision.get_collider().is_in_group("Plant") && collision.get_collider().placed: #damage plant
 			collision.get_collider().currentHP -= 2 * delta
 		else: #damage nursery
 			if !targetPlants: #regular enemies
@@ -104,5 +106,9 @@ func move_towards_target(delta):
 				target_position = get_new_target_position()
 			else:
 				current_target_search_time -= (1/target_search_time)*delta	
+	
+	if currentHP <= 0:
+		root.money += 2
+		queue_free()
 	
 	move_and_slide()

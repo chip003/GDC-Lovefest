@@ -11,13 +11,16 @@ var enemy_file_paths = []
 var enemy_instances = []
 const enemy_worm = "res://Scenes/Enemy/EnemyWorm.tscn"
 const enemy_rabbit = "res://Scenes/Enemy/EnemyRabbit.tscn"
+const enemy_aphid = "res://Scenes/Enemy/EnemyAphid.tscn"
 
-var percent_rabbits = 25 # %
+@onready var main = get_node("/root/PlayArea")
 
 var min_x = 0
 var max_x = 1000
 var min_y = -1000
 var max_y = 0
+
+var spawnCount = 1
 
 
 
@@ -32,6 +35,9 @@ func _ready():
 
 
 func _process(delta):
+	
+	spawnCount += (1/20)*delta
+	
 	var current_time = Time.get_ticks_msec()
 	if time_to_spawn(current_time) and not enemy_capacity_reached():
 		spawn_enemy()
@@ -54,17 +60,20 @@ func time_to_spawn(current_time):
 	
 	
 func spawn_enemy():
-	randomize()
-	var random_num = randi_range(0, 100)
-	var enemy_scene
-	if random_num < percent_rabbits:
-		enemy_scene = preload(enemy_rabbit).instantiate()
-	else:
-		enemy_scene = preload(enemy_worm).instantiate()
-	enemy_scene .position = get_random_position()
-	get_parent().add_child(enemy_scene)
-	enemy_instances.append(enemy_scene)
-	print("EnemySpawner: spawned enemy")
+	for i in range(floor(spawnCount)):	
+		randomize()
+		var random_num = randi_range(0, 100)
+		var enemy_scene
+		if random_num < 25:
+			enemy_scene = preload(enemy_rabbit).instantiate()
+		elif random_num < 50 && main.time > 60:
+			enemy_scene = preload(enemy_aphid).instantiate()
+		else:
+			enemy_scene = preload(enemy_worm).instantiate()
+		enemy_scene .position = get_random_position()
+		get_parent().add_child(enemy_scene)
+		enemy_instances.append(enemy_scene)
+		print("EnemySpawner: spawned enemy")
 
 
 func get_random_position():

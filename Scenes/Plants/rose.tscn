@@ -1,25 +1,101 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3uism5hfybuy"]
+[gd_scene load_steps=18 format=3 uid="uid://d3uism5hfybuy"]
 
 [ext_resource type="Script" path="res://Scenes/Plants/plant.gd" id="1_h5asr"]
-[ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="2_j2lbg"]
+[ext_resource type="Texture2D" uid="uid://c5hhxp765tnqc" path="res://Sprites/rose.png" id="2_3mxpn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kc0h0"]
 radius = 24.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ufg7"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu7gh"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnsvc"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8sct"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmhxa"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(288, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ss3"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(360, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll0i8"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(432, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03r4i"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(504, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usfxs"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(576, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e30n"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(648, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft4mn"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(720, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0og6t"]
+atlas = ExtResource("2_3mxpn")
+region = Rect2(792, 0, 72, 72)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6tdgg"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"attack",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_j2lbg")
+"texture": SubResource("AtlasTexture_0ufg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu7gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnsvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8sct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmhxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ss3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll0i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03r4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usfxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e30n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft4mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0og6t")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1jdh"]
@@ -40,14 +116,16 @@ shape = SubResource("CircleShape2D_kc0h0")
 sprite_frames = SubResource("SpriteFrames_6tdgg")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.90636
+offset = Vector2(0, -32)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(48, 12)
-offset_left = -24.0
-offset_top = -52.0
-offset_right = 24.0
-offset_bottom = -40.0
-pivot_offset = Vector2(24, 0)
+custom_minimum_size = Vector2(96, 16)
+offset_left = -48.0
+offset_top = -84.0
+offset_right = 48.0
+offset_bottom = -68.0
+pivot_offset = Vector2(48, 0)
 theme_override_styles/fill = SubResource("StyleBoxFlat_d1jdh")
 value = 50.0
 show_percentage = false

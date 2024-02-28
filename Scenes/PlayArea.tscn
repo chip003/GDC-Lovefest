@@ -1,15 +1,43 @@
-[gd_scene load_steps=16 format=3 uid="uid://du8q8em1w5nit"]
+[gd_scene load_steps=22 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
 [ext_resource type="Script" path="res://Scenes/PlayArea.gd" id="1_uubf7"]
 [ext_resource type="PackedScene" uid="uid://ccvk8gfcixoav" path="res://Scenes/Enemy/EnemySpawner.tscn" id="2_70cjn"]
+[ext_resource type="StyleBox" uid="uid://c7jpdvusbojbp" path="res://new_style_box_flat.tres" id="4_73xly"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_djsil"]
 [ext_resource type="Texture2D" uid="uid://b3umymuuatjll" path="res://Sprites/tileset.png" id="4_qo22i"]
 [ext_resource type="PackedScene" uid="uid://bsur1ctde5mxm" path="res://Scenes/seedButton.tscn" id="5_aevuh"]
-[ext_resource type="Texture2D" uid="uid://cr2x6uk5puvui" path="res://Sprites/seed_rose.png" id="5_kjbpe"]
+[ext_resource type="Texture2D" uid="uid://cpkfw171yetuv" path="res://Sprites/wateringcan.png" id="5_u2gma"]
 [ext_resource type="Texture2D" uid="uid://bn4mwnvm25bw0" path="res://Sprites/bench.png" id="5_ye7yr"]
+[ext_resource type="Texture2D" uid="uid://b32tvx15b7s4g" path="res://Sprites/heart.png" id="6_oextu"]
 [ext_resource type="PackedScene" uid="uid://b56edep2iywhf" path="res://Scenes/Pot.tscn" id="8_mi2f7"]
 [ext_resource type="Script" path="res://Scenes/Cursor.gd" id="10_rqcyb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gr88j"]
+bg_color = Color(0, 0.270588, 0.160784, 0.588235)
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsmyy"]
+bg_color = Color(0, 0.270588, 0.160784, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcr03"]
+bg_color = Color(0, 0, 0, 0.588235)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqlqb"]
+bg_color = Color(0.960784, 0, 0.301961, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2duw"]
 texture = ExtResource("4_qo22i")
@@ -103,9 +131,9 @@ anchor_bottom = 1.0
 offset_right = 300.0
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+[node name="backPanel" type="Panel" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
-color = Color(0, 0, 0, 0.231373)
+theme_override_styles/panel = SubResource("StyleBoxFlat_gr88j")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
@@ -116,6 +144,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 25
 
 [node name="Day" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
@@ -124,6 +153,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
+text = "3:00"
 
 [node name="Gold" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -139,16 +169,20 @@ expand_mode = 2
 layout_mode = 2
 text = "100000"
 
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_tsmyy")
+
 [node name="Seeds" type="MarginContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds"]
+[node name="ColorRect2" type="Panel" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds"]
 z_index = -1
 layout_mode = 2
-color = Color(0.192157, 0.192157, 0.192157, 1)
+theme_override_styles/panel = ExtResource("4_73xly")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds"]
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Seeds/VBoxContainer"]
@@ -172,16 +206,20 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_tsmyy")
+
 [node name="Tools" type="MarginContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools"]
+[node name="ColorRect2" type="Panel" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools"]
 z_index = -1
 layout_mode = 2
-color = Color(0.192157, 0.192157, 0.192157, 1)
+theme_override_styles/panel = ExtResource("4_73xly")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools"]
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer"]
@@ -189,20 +227,58 @@ layout_mode = 2
 text = "Tools"
 horizontal_alignment = 1
 
-[node name="List" type="GridContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="List" type="GridContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SeedButton" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer/List" instance=ExtResource("5_aevuh")]
+[node name="SeedButton" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Tools/VBoxContainer/MarginContainer/List" instance=ExtResource("5_aevuh")]
 layout_mode = 2
 text = "Watering Can"
 desc = "Water your plants to help them grow!"
 data = {
 "Cost": 2,
 "Name": "Watering Can",
-"Sprite": ExtResource("5_kjbpe"),
+"Sprite": ExtResource("5_u2gma"),
 "Type": "Watering Can"
 }
+
+[node name="Top" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Top"]
+z_index = 1
+layout_mode = 2
+text = "111"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Top"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_oextu")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Top"]
+z_index = -1
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_fcr03")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mqlqb")
+value = 50.0
+show_percentage = false
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_djsil")

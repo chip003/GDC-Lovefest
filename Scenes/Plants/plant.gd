@@ -9,8 +9,13 @@ var waterLevel = 0.0
 ## The time it takes for the water to dry up
 var dryTime = 10.0
 ## Maximum amount of health
-var hp = 10.0
-var currentHP = hp
+@export var hp = 20.0
+@onready var currentHP = hp
+@export var attackTime = 1.0 #seconds
+@onready var attackCooldown = attackTime
+@export var projectileSpeed = 600.0
+@export var projectileDamage = 1.0
+@export var attackRange = 384
 
 var followTarget = null
 var placed = false
@@ -39,9 +44,34 @@ func _process(delta):
 	if waterLevel > 0:
 		if growth < 1:
 			growth += (1/growTime)*delta
-		else: #code to be ran when plant is adult
-			pass
 	
 		#print(str(waterLevel) + " " + str(growth))
 	
 		waterLevel -= (1/dryTime)*delta
+		
+	if placed: #code to be ran when plant is adult
+		var enemies = get_tree().get_nodes_in_group("Enemy")
+		var dist = INF
+		var target = null
+		
+		for i in enemies:
+			if global_position.distance_to(i.global_position) < dist:
+				dist = global_position.distance_to(i.global_position)
+				target = i
+				
+		if target:
+			if dist < attackRange:
+				if attackCooldown <= 0:
+					print("shotthorn")
+					var thorn = preload("res://Scenes/Plants/thorn.tscn").instantiate()
+					thorn.global_position = global_position
+					thorn.direction = global_position.direction_to(target.global_position)
+					thorn.speed = projectileSpeed
+					thorn.damage = projectileDamage
+					get_parent().add_child(thorn)
+					attackCooldown = attackTime
+				else:
+					attackCooldown -= 1*delta
+				
+	if currentHP <= 0:
+		queue_free()

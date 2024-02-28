@@ -47,15 +47,17 @@ func _process(delta):
 					else: #plant does exist
 						if data.Type == "Watering Can": #watering a plant
 							pot.currentPlant.waterLevel = 1.0
+							$Water.restart()
 							$Water.emitting = true
 							get_node("/root/PlayArea").money -= data.Cost
 							
 				else:
 					if pot.currentPlant: #pickup a plant
-						if !pot.currentPlant.placed:
-							pot.currentPlant.followTarget = self
-							currentPot = pot
-							holdingPlant = true
+						if pot.currentPlant.growth >= 1:
+							if !pot.currentPlant.placed:
+								pot.currentPlant.followTarget = self
+								currentPot = pot
+								holdingPlant = true
 				
 				
 	
