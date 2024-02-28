@@ -29,8 +29,8 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="Rose" type="StaticBody2D"]
-z_index = 1
+[node name="Rose" type="StaticBody2D" groups=["Plant"]]
+z_index = 2
 script = ExtResource("1_h5asr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

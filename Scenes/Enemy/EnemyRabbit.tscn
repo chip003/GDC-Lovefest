@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqmws6vsy7ydv"]
+[gd_scene load_steps=5 format=3 uid="uid://dqmws6vsy7ydv"]
 
 [ext_resource type="PackedScene" uid="uid://1eqvxqoyh67y" path="res://Scenes/Enemy/Enemy.tscn" id="1_qmf61"]
-[ext_resource type="Script" path="res://Scenes/Enemy/EnemyRabbit.gd" id="2_cvg8p"]
 [ext_resource type="Texture2D" uid="uid://bth4mj3flps6b" path="res://Scenes/Enemy/rabbit.png" id="2_fpmi3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_000jy"]
@@ -51,7 +50,8 @@ animations = [{
 size = Vector2(96, 52)
 
 [node name="EnemyRabbit" instance=ExtResource("1_qmf61")]
-script = ExtResource("2_cvg8p")
+speed = 75
+targetPlants = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(0.1, 0.1)

@@ -12,6 +12,9 @@ var dryTime = 10.0
 var hp = 10.0
 var currentHP = hp
 
+var followTarget = null
+var placed = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +30,10 @@ func _process(delta):
 		$HealthBar.visible = true
 	else:
 		$HealthBar.visible = false
+	
+	if followTarget:
+		print(global_position)
+		global_position = followTarget.global_position
 	
 	scale = Vector2(growth, growth)
 	if waterLevel > 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://du8q8em1w5nit"]
+[gd_scene load_steps=16 format=3 uid="uid://du8q8em1w5nit"]
 
 [ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="1_0i5vi"]
 [ext_resource type="Script" path="res://Scenes/PlayArea.gd" id="1_uubf7"]
@@ -84,6 +84,9 @@ colors = PackedColorArray(0, 0.580392, 1, 1, 0, 0.631373, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fky1x"]
 radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_napiw"]
+radius = 24.0
 
 [node name="PlayArea" type="Node2D"]
 y_sort_enabled = true
@@ -289,3 +292,10 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
 shape = SubResource("CircleShape2D_fky1x")
+
+[node name="CollisionCheck" type="Area2D" parent="Cursor"]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/CollisionCheck"]
+shape = SubResource("CircleShape2D_napiw")
