@@ -4,7 +4,7 @@ var limitMin = Vector2i(-1024,-1024)
 var limitMax = Vector2i(1024,1024)
 
 var money = 40
-var nursery_hp = 1000
+var nursery_hp = 200
 var time = 0.0
 
 func _process(delta):
@@ -12,9 +12,12 @@ func _process(delta):
 	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Gold/Label.text = str(money)
 	var seconds = "%02d" % floor(fmod(time,60))
 	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day/Label.text = str(floor(time/60)) + ":" + seconds
-
-
+	$CanvasLayer/Top/Label.text = str(floor(nursery_hp))
+	$CanvasLayer/Top/ProgressBar.value = nursery_hp
+	
+	
 func _ready():
+	$CanvasLayer/Top/ProgressBar.max_value = nursery_hp
 	spawn_horizontal(Vector2(limitMin.x,limitMax.x),limitMin.y)
 	spawn_horizontal(Vector2(limitMin.x,limitMax.x),limitMax.y)
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsur1ctde5mxm"]
+[gd_scene load_steps=4 format=3 uid="uid://bsur1ctde5mxm"]
 
 [ext_resource type="Script" path="res://Scenes/seedButton.gd" id="1_8c2x6"]
 [ext_resource type="Texture2D" uid="uid://cr2x6uk5puvui" path="res://Sprites/seed_rose.png" id="1_fw7v4"]
+[ext_resource type="Texture2D" uid="uid://bhx1osui2vcl" path="res://Sprites/coin_icon.png" id="3_suggl"]
 
 [node name="SeedButton" type="Button"]
 custom_minimum_size = Vector2(74, 32)
@@ -10,5 +11,20 @@ icon = ExtResource("1_fw7v4")
 alignment = 0
 script = ExtResource("1_8c2x6")
 desc = "A basic plant"
+
+[node name="Label" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 56.555
+offset_right = 98.0
+offset_bottom = 80.555
+
+[node name="TextureRect" type="TextureRect" parent="Label"]
+layout_mode = 2
+texture = ExtResource("3_suggl")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 2
+text = "2"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

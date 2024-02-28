@@ -16,6 +16,7 @@ func _ready():
 	icon = data.Sprite
 	tooltip_text = desc
 	main = get_node("/root/PlayArea")
+	$Label/Label.text = str(data.Cost)
 
 
 func _process(delta):

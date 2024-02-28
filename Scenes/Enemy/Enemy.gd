@@ -9,6 +9,8 @@ var current_target_search_time = 0.0
 
 @export var damage = 1
 @export var speed = 50
+@export var hp = 4.0
+@onready var currentHP = hp
 
 @export var targetPlants = false
 
@@ -35,9 +37,10 @@ func get_new_target_position():
 	
 	# Find the closest plant to target
 	for i in targets:
-		if global_position.distance_to(i.global_position) < dist:
-			dist = global_position.distance_to(i.global_position)
-			targetPlant = i
+		if i.placed:
+			if global_position.distance_to(i.global_position) < dist:
+				dist = global_position.distance_to(i.global_position)
+				targetPlant = i
 		
 	#there is at least one plant to target
 	if targetPlant:
@@ -77,12 +80,12 @@ func move_towards_target(delta):
 			$AnimatedSprite2D.play("topangle")
 			$AnimatedSprite2D.flip_h = false
 	
-	var collision = move_and_collide(direction*speed, true)
+	var collision = move_and_collide(direction, true)
 	
 	if collision: #colliding with object
 		velocity = Vector2(0,0)
 		
-		if collision.get_collider().is_in_group("Plant"): #damage plant
+		if collision.get_collider().is_in_group("Plant") && collision.get_collider().placed: #damage plant
 			collision.get_collider().currentHP -= 2 * delta
 		else: #damage nursery
 			if !targetPlants: #regular enemies
@@ -91,21 +94,21 @@ func move_towards_target(delta):
 				if current_target_search_time <= 0:
 					current_target_search_time = target_search_time
 					target_position = get_new_target_position()
-					
-					print(target_position)
-					
-					print("set new target")
 				else:
 					current_target_search_time -= (1/target_search_time)*delta
 	else:
-		velocity = direction*speed
-		
-	move_and_slide()
-
+		if global_position.distance_to(target_position) > 0.1:
+			velocity = direction*speed
+		else:
+			velocity = Vector2(0,0)
+			if current_target_search_time <= 0:
+				current_target_search_time = target_search_time
+				target_position = get_new_target_position()
+			else:
+				current_target_search_time -= (1/target_search_time)*delta	
 	
-func in_collision_with_plant():
-	for i in get_slide_collision_count():
-		var collider = get_slide_collision(i).get_collider()
-		if collider.is_in_group("Plant"):
-			return collider.get_collider()
-	return null
+	if currentHP <= 0:
+		root.money += 2
+		queue_free()
+	
+	move_and_slide()
