@@ -11,10 +11,14 @@ func _process(delta):
 	time += 1*delta
 	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Gold/Label.text = str(money)
 	var seconds = "%02d" % floor(fmod(time,60))
-	$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day/Label.text = str(floor(time/60)) + ":" + seconds
+	if nursery_hp > 0:
+		$CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/Day/Label.text = str(floor(time/60)) + ":" + seconds
+	
 	$CanvasLayer/Top/Label.text = str(floor(nursery_hp))
 	$CanvasLayer/Top/ProgressBar.value = nursery_hp
 	
+	if nursery_hp <= 0:
+		$CanvasLayer/Lose.visible = true
 	
 func _ready():
 	$CanvasLayer/Top/ProgressBar.max_value = nursery_hp
@@ -39,3 +43,11 @@ func spawn_vertical(yrange, xlevel):
 		var tree = preload("res://Scenes/tree.tscn").instantiate()
 		tree.global_position = Vector2(randf_range(xlevel-256,xlevel+256), randf_range(yrange.x,yrange.y))
 		add_child(tree)
+
+
+func _on_button_pressed():
+	get_tree().reload_current_scene()
+
+
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")

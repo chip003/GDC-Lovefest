@@ -12,4 +12,7 @@ func _process(delta):
 func _on_body_entered(body):
 	if body is Enemy:
 		body.currentHP -= damage
+		var player = body.get_node("Hit")
+		player.pitch_scale = randf_range(0.75,1.25)
+		player.play()
 		queue_free()

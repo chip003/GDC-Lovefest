@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://dqmws6vsy7ydv"]
+[gd_scene load_steps=110 format=3 uid="uid://dqmws6vsy7ydv"]
 
 [ext_resource type="PackedScene" uid="uid://1eqvxqoyh67y" path="res://Scenes/Enemy/Enemy.tscn" id="1_qmf61"]
 [ext_resource type="Texture2D" uid="uid://dfjergi2hvcvm" path="res://Sprites/rabbit_bottomright.png" id="2_tkf2l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c10gnfydaqaq6" path="res://Sprites/rabbit_right.png" id="4_o4rso"]
 [ext_resource type="Texture2D" uid="uid://bmtarmsqdp8qb" path="res://Sprites/rabbit_topright.png" id="5_tkm47"]
 [ext_resource type="Texture2D" uid="uid://b1r5nfjflglvn" path="res://Sprites/rabbit_up.png" id="6_36oqt"]
+[ext_resource type="AudioStream" uid="uid://cmk282ugrtxnw" path="res://Sounds/enemyhit.wav" id="7_v8i0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4oge4"]
 atlas = ExtResource("2_tkf2l")
@@ -753,3 +754,6 @@ frame_progress = 0.901008
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_8m4o1")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." index="2"]
+stream = ExtResource("7_v8i0y")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3uism5hfybuy"]
+[gd_scene load_steps=19 format=3 uid="uid://d3uism5hfybuy"]
 
 [ext_resource type="Script" path="res://Scenes/Plants/plant.gd" id="1_h5asr"]
 [ext_resource type="Texture2D" uid="uid://c5hhxp765tnqc" path="res://Sprites/rose.png" id="2_3mxpn"]
+[ext_resource type="AudioStream" uid="uid://cyn14hekj82t7" path="res://Sounds/shoot.wav" id="3_6dc5o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kc0h0"]
 radius = 24.0
@@ -129,3 +130,8 @@ pivot_offset = Vector2(48, 0)
 theme_override_styles/fill = SubResource("StyleBoxFlat_d1jdh")
 value = 50.0
 show_percentage = false
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6dc5o")
+volume_db = -15.0
+max_distance = 1024.0

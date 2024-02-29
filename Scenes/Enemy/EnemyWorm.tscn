@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://g3xo4lcoqj02"]
+[gd_scene load_steps=110 format=3 uid="uid://g3xo4lcoqj02"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="1_68cui"]
 [ext_resource type="Texture2D" uid="uid://baus6vn8g6yj" path="res://Sprites/caterpillar_bottomright.png" id="2_22bcc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://defh01nq154sq" path="res://Sprites/caterpillar_right.png" id="4_5fda5"]
 [ext_resource type="Texture2D" uid="uid://dwcomeln116sq" path="res://Sprites/caterpillar_topright.png" id="5_lh5q7"]
 [ext_resource type="Texture2D" uid="uid://bi365wh4imo6h" path="res://Sprites/caterpillar_up.png" id="6_o6h8f"]
+[ext_resource type="AudioStream" uid="uid://cmk282ugrtxnw" path="res://Sounds/enemyhit.wav" id="7_lkgng"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxyqe"]
 atlas = ExtResource("2_22bcc")
@@ -749,3 +750,6 @@ autoplay = "side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7xk6s")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_lkgng")
